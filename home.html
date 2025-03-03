@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/swiper/11.0.5/swiper-bundle.min.js"></script>
+    <script defer src="main.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <aside>
+            <ul class="links">
+                <li onclick="navigate(0)" class="activatelink"><i class="fa-solid fa-house"></i>
+                    <p>Home</p>
+                </li>
+                <li onclick="navigate(1)"><i class="fa-solid fa-house"></i>
+                    <p>About me</p>
+                </li>
+                <li onclick="navigate(2)"><i class="fa-solid fa-house"></i>
+                    <p>Services</p>
+                </li>
+                <li onclick="navigate(3)"><i class="fa-solid fa-house"></i>
+                    <p>Gallery</p>
+                </li>
+                <li onclick="navigate(4)"><i class="fa-solid fa-house"></i>
+                    <p>Contact me</p>
+                </li>
+            </ul>
+        </aside>
+        <div class="swiper mySwiper">
+            <div class="SlideContainer swiper-wrapper">
+                <div class="swiper-slide home-slide">
+                    <div class="HomeContent">
+                        <h1>Hi! I'm <span class="stylized-name">Barrack</span>,</h1>
+                        <h2>A <span class="professions">Web Developer</span></h2>
+                        <p class="heroline">As a web developer and programmer, I create user-friendly web applications with HTML, CSS, JavaScript, and back-end languages like Python. 
+                            Skilled in responsive design and version control, I deliver high-quality, collaborative projects. Passionate about learning, I stay updated with industry trends and strive for excellence in every project.
+                        </p>
+                        <div class="buttonGroup"><button>Hire Me</button><button>Contact Me</button></div>
+                    </div>
+                    <div class="slideImg">
+                        <div class="top-right-corner">
+                            <hr class="hr1">
+                            <hr class="hr2">
+                        </div>
+                        <img src="https://fastly.picsum.photos/id/870/200/300.jpg?blur=2&grayscale&hmac=ujRymp644uYVjdKJM7kyLDSsrqNSMVRPnGU99cKl6Vs" alt="">
+                        <div class="bottom-left-corner">
+                            <hr class="hr1">
+                            <hr class="hr2">
+                        </div>
+                        <p class="slide-help">Scroll for next slide<i class="fa-solid fa-chevron-right fa-shake"></i>
+                        </p>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="about-us">
+                            <h1 class="heading">About Me</h1>
+                            <h3 class="sub-heading">Im Barrack, <span class="proffesions">A Web Developer</span></h3>
+                            <p class="aboutme-details">
+                                I am a web developer and programmer with a passion for creating user-friendly web applications. I have experience in front-end and back-end development, and I am skilled in HTML, CSS, JavaScript, and Python. I am also proficient in responsive design and version control. 
+                                I am passionate about learning and staying updated with industry trends. 
+                                I strive for excellence in every project I work on, and I am committed to delivering high-quality, collaborative projects.
+                            </p>
+                            <div class="about-me-division">
+                                <div class="about-me-left">
+                                    <h3 class="sub-heading">Skills</h3>
+                                    <ul class="skills-list">
+                                        <li><span>Experience:</span> 5+ years</li>
+                                        <li><span>Country:<span> Kenya</li>
+                                        <li><span>Availability:</span> 24/7</li>
+                                        <li><span>Satisfied customers:</span> 200+</li>
+                                        <li><span>Age:</span> 20</li>
+                                        <li><span>Phone:</span> +254791087502</li>
+                                        <li><span>email:</span> bodoro2017@gmail.com</li>
+                                        <li><span>Language used:</span> HTML</li>
+                                        <li><span>Degree:</span> CS</li>
+                                    </ul>
+                                </div>
+                                <div class="Skill-bar">
+                                    <li>
+                                        <p>HTML</p>
+                                        <div class="bar">
+                                            <div class="active-bar" style="width:89%"></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <p>CSS</p>
+                                        <div class="bar">
+                                            <div class="active-bar" style="width:60%"></div>
+                                    </li>
+                                    <li>
+                                        <p>JavaScript</p>
+                                        <div class="bar">
+                                            <div class="active-bar" style="width:55%"></div>
+                                    </li>
+                                    <li>
+                                        <p>Python</p>
+                                        <div class="bar">
+                                            <div class="active-bar" style="width:50%"></div>
+                                    </li>
+                                    <li>
+                                        <p>Django</p>
+                                        <div class="bar">
+                                            <div class="active-bar" style="width:20%"></div>
+                                    </li>
+                                </div>
+                            </div>
+                        </div></div>
+                        <div class="swiper-slide service">
+                            <h1 class="heading">Services</h1>
+                            <div class="services">
+                                <div class="service"><i class="fa-solid fa-pen-ruler"></i></div>
+                                <h2>Web Design</h2>
+                                <p>Designing user-friendly websites that are visually appealing and easy to navigate.</p>
+                            </div>
+                            <div class="service">
+                                <i class="fa-solid fa-globe"></i>
+                                <h2>Web Development</h2>
+                                <p>Developing responsive web applications with HTML, CSS, JavaScript, and back-end languages like Python.</p>
+                            </div>
+                            <div class="service">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <h2>SEO</h2>
+                                <p>Optimizing websites to rank higher in search engine results, increasing visibility and driving more organic traffic to your site through keyword research, on-page optimization, and link building strategies.</p>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-image"></i>
+                                <h2>Graphic Design</h2>
+                                <p>Creating visually stunning graphics and layouts for websites, social media, and print materials. Utilizing tools like Adobe Photoshop, Illustrator, and InDesign to bring your brand's vision to life with creativity and precision.</p>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-image"></i>
+                                <h2>software Development</h2>
+                                <p>Building robust and scalable software solutions tailored to meet your business needs using modern programming languages and frameworks.</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide gallery">
+                            <h1 class="heading">Gallery</h1>
+                            <div class="gallery-images">
+                                <div class="project"><img src="https//picsum.photos/200/300?random=1" alt=""></div>
+                                <div class="project"><img src="https://picsum.photos/200/300?random=2" alt=""></div>
+                                <div class="project"><img src="https://picsum.photos/200/300?random=3" alt=""></div>
+                                <div class="project"><img src="https://picsum.photos/200/300?random=4" alt=""></div>
+                                <div class="project"><img src="https://picsum.photos/200/300?random=5" alt=""></div>
+                                <div class="project"><img src="https://picsum.photos/200/300?random=6" alt=""></div>
+                            </div>
+                            <div class="swiper-slide contact">
+                                <h1 class="heading">Contact Me</h1>
+                                <div class="contact-info">
+                                    <div class="contact-details"><i class="fa-solid fa-phone"></i>
+                                        <h3>Mobile No</h3>
+                                        <p>+254791087502</p>
+                                    </div>
+                                    <div class="contact-info"><i class="fa-solid fa-location-dot"></i>
+                                        <h3>Location</h3>
+                                        <p>Somewhere On Earth</p>
+                                    </div> 
+                                    <div class="contact-info"><i class="fa-solid fa-envelope"></i>
+                                        <h3>Email</h3>
+                                        <p>bodoro2017@gmail.com</p>
+                                    </div>
+                                    <div class="contact-info"><i class="fa-solid fa-globe"></i>
+                                        <h3>Website</h3>
+                                        <p></p>
+                                    </div>
+                                    <form>
+                                        <h2>Send Me A Message<div class="form-group">
+                                            <i class="fa-brands fa-codepen"></i>
+                                            <i class="fa-brands fa-instagram"></i>
+                                            <i class="fa-brands fa-twitter"></i>
+                                            <i class="fa-brands fa-twitter"></i>
+                                            <i class="fa-brands fa-facebook"></i>
+                                        </h2>
+                                        <input type="text" placeholder="Name">
+                                        <input type="text" placeholder="email">
+                                        <input type="text" placeholder="Type Your Message Here...">
+                                        <button class="primary">Send</button>
+                                    </form>
+                                    <footer>
+                                        <li>Copyright © 2023 Barrack </li>
+                                    </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>   
+</body>
+</html>
