@@ -274,7 +274,7 @@ aside li i {
 
 
 /* About Slide Specific Styling */
-.about { /* Matches ID in HTML */
+#about { /* Matches ID in HTML */
     width: 100%;
     height: 100%;
     /* Padding is defined on .swiper-slide already */
@@ -396,6 +396,7 @@ aside li i {
     gap: 20px; /* Gap between service items */
     /* Removed specific grid-template-rows as auto-fit handles it */
     padding: 0 20px; /* Adjusted padding within the slide */
+    
 }
 
 .services .heading { /* Specific heading for services */
