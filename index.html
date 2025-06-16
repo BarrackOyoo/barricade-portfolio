@@ -8,16 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
-    <style>
-          #ConstellationCanva {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-    </style>
 </head>
 <body>
     <main>
@@ -49,7 +39,6 @@
         <div class="mySwiper">
            
             <div class="swiper-wrapper">
-                <canvas id="ConstellationCanvas">
                 <div class="swiper-slide home-slide" id="home">
                     <div class="homeContent">
                         <h1>HELLO THERE !</h1>
@@ -245,7 +234,6 @@
                         <p>&copy; 2025 Anuj Raj. All Rights Reserved.</p>
                     </footer>
                 </div>
-                </canvas>
             </div>
         </div>
     </main>
@@ -254,110 +242,6 @@
     <script src="script.js"></script>
     <script src="java.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('constellationCanvas');
-    const ctx = canvas.getContext('2d');
-
-    let particles = [];
-    const numParticles = 100;
-    const maxLineDistance = 120; // Max distance for lines to be drawn between particles
-    const particleSpeed = 0.5; // How fast particles move
-    const particleRadius = 2; // Size of the particles
-
-    // Set canvas dimensions
-    function setCanvasDimensions() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-
-    // Particle class
-    class Particle {
-        constructor(x, y) {
-            this.x = x;
-            this.y = y;
-            this.vx = (Math.random() - 0.5) * particleSpeed * 2; // -speed to +speed
-            this.vy = (Math.random() - 0.5) * particleSpeed * 2;
-            this.radius = particleRadius;
-        }
-
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; // White particles, slightly transparent
-            ctx.fill();
-        }
-
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
-
-            // Bounce off edges
-            if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
-                this.vx *= -1;
-            }
-            if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
-                this.vy *= -1;
-            }
-        }
-    }
-
-    // Initialize particles
-    function initParticles() {
-        particles = [];
-        for (let i = 0; i < numParticles; i++) {
-            const x = Math.random() * canvas.width;
-            const y = Math.random() * canvas.height;
-            particles.push(new Particle(x, y));
-        }
-    }
-
-    // Draw lines between particles
-    function drawLines() {
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const p1 = particles[i];
-                const p2 = particles[j];
-
-                const distance = Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
-
-                if (distance < maxLineDistance) {
-                    ctx.beginPath();
-                    ctx.moveTo(p1.x, p1.y);
-                    ctx.lineTo(p2.x, p2.y);
-                    // Line transparency based on distance
-                    ctx.strokeStyle = rgba(255, 255, 255, ${1 - (distance / maxLineDistance)});
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            }
-        }
-    }
-
-    // Animation loop
-    function animate() {
-        requestAnimationFrame(animate);
-        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
-
-        particles.forEach(p => {
-            p.update();
-            p.draw();
-        });
-
-        drawLines();
-    }
-
-    // Handle window resizing
-    window.addEventListener('resize', () => {
-        setCanvasDimensions();
-        initParticles(); // Re-initialize particles to distribute them across new dimensions
-    });
-
-    // Initial setup
-    setCanvasDimensions();
-    initParticles();
-    animate();
-});
-    </script>
+   
 </body>
 </html>
