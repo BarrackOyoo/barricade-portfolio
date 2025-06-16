@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="style.css">
     <style>
-          #particles-js {
+          #ConstellationCanva {
             position: fixed;
             width: 100%;
             height: 100%;
@@ -46,7 +46,8 @@
             </ul>
         </aside>
 
-        <div class="mySwiper" id="particles-js">
+        <div class="mySwiper">
+            <canvas id="ConstellationCanvas"></canvas>
             <div class="swiper-wrapper">
                 <div class="swiper-slide home-slide" id="home">
                     <div class="homeContent">
@@ -250,187 +251,111 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
     <script src="java.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        // Particle.js configuration
-        particlesJS('particles-js', {
-            particles: {
-                number: {
-                    value: 80,
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-                color: {
-                    value: '#ffffff'
-                },
-                shape: {
-                    type: 'circle',
-                    stroke: {
-                        width: 0,
-                        color: '#000000'
-                    },
-                    polygon: {
-                        nb_sides: 5
-                    },
-                    image: {
-                        src: 'img/github.svg',
-                        width: 100,
-                        height: 100
-                    }
-                },
-                opacity: {
-                    value: 0.5,
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 1,
-                        opacity_min: 0.1,
-                        sync: false
-                    }
-                },
-                size: {
-                    value: 3,
-                    random: true,
-                    anim: {
-                        enable: false,
-                        speed: 4,
-                        size_min: 0.3,
-                        sync: false
-                    }
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#ffffff',
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 6,
-                    direction: 'none',
-                    random: true,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false,
-                    attract: {
-                        enable: false,
-                        rotateX: 600,
-                        rotateY: 1200
-                    }
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: 'repulse'
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: 'push'
-                    },
-                    resize: true
-                },
-                modes: {
-                    grab: {
-                        distance: 400,
-                        line_linked: {
-                            opacity: 1
-                        }
-                    },
-                    bubble: {
-                        distance: 400,
-                        size: 40,
-                        duration: 2,
-                        opacity: 0.8,
-                        speed: 3
-                    },
-                    repulse: {
-                        distance: 200,
-                        duration: 0.4
-                    },
-                    push: {
-                        particles_nb: 4
-                    },
-                    remove: {
-                        particles_nb: 2
-                    }
-                }
-            },
-            retina_detect: true
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('constellationCanvas');
+    const ctx = canvas.getContext('2d');
 
+    let particles = [];
+    const numParticles = 100;
+    const maxLineDistance = 120; // Max distance for lines to be drawn between particles
+    const particleSpeed = 0.5; // How fast particles move
+    const particleRadius = 2; // Size of the particles
 
-        // Mobile menu functionality
-        const hamburgerBtn = document.getElementById("hamburger-btn");
-        const mobileMenu = document.getElementById("mobile-menu");
-        const closeMenuBtn = document.getElementById("close-menu-btn");
-        const mobileMenuLinks = mobileMenu.querySelectorAll("a");
-        const navLinks = document.querySelectorAll('header nav a');
-        const sections = document.querySelectorAll('section');
+    // Set canvas dimensions
+    function setCanvasDimensions() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
 
-        function toggleMobileMenu() {
-            mobileMenu.classList.toggle("hidden");
+    // Particle class
+    class Particle {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.vx = (Math.random() - 0.5) * particleSpeed * 2; // -speed to +speed
+            this.vy = (Math.random() - 0.5) * particleSpeed * 2;
+            this.radius = particleRadius;
         }
 
-        hamburgerBtn.addEventListener("click", toggleMobileMenu);
-        closeMenuBtn.addEventListener("click", toggleMobileMenu);
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener("click", toggleMobileMenu);
-        });
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; // White particles, slightly transparent
+            ctx.fill();
+        }
 
-        document.addEventListener('click', (event) => {
-            if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && event.target !== hamburgerBtn) {
-                toggleMobileMenu();
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Bounce off edges
+            if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+                this.vx *= -1;
             }
-        });
-
-        // Active link highlighting
-        function updateActiveNavLink() {
-            let currentSectionId = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
-                    currentSectionId = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === currentSectionId) {
-                    link.classList.add('active');
-                }
-            });
+            if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+                this.vy *= -1;
+            }
         }
+    }
 
-        window.addEventListener('scroll', updateActiveNavLink);
+    // Initialize particles
+    function initParticles() {
+        particles = [];
+        for (let i = 0; i < numParticles; i++) {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            particles.push(new Particle(x, y));
+        }
+    }
 
-       // Page transition on load
-        window.addEventListener('load', () => {
-            const pageSections = document.querySelectorAll('.page-transition');
-            pageSections.forEach(section => {
-                section.classList.add('active');
-            });
+    // Draw lines between particles
+    function drawLines() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const p1 = particles[i];
+                const p2 = particles[j];
 
-            // Initial active link update
-            updateActiveNavLink();
+                const distance = Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
+
+                if (distance < maxLineDistance) {
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    // Line transparency based on distance
+                    ctx.strokeStyle = rgba(255, 255, 255, ${1 - (distance / maxLineDistance)});
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+
+        particles.forEach(p => {
+            p.update();
+            p.draw();
         });
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+        drawLines();
+    }
 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+    // Handle window resizing
+    window.addEventListener('resize', () => {
+        setCanvasDimensions();
+        initParticles(); // Re-initialize particles to distribute them across new dimensions
+    });
+
+    // Initial setup
+    setCanvasDimensions();
+    initParticles();
+    animate();
+});
     </script>
 </body>
 </html>
